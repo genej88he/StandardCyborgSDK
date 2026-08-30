@@ -19,14 +19,48 @@ class InitialViewController: UIViewController {
         if UIDevice.current.userInterfaceIdiom == .pad {
             view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         }
+
+        _installSettingsButton()
     }
-    
+
     @IBAction private func scan(_ sender: UIButton?) {
         let scanToBPLY = UserDefaults.standard.bool(forKey: "dump_raw_frames_to_bply", defaultValue: false)
         let segueIdentifier = scanToBPLY ? "BPLYScanningViewController" : "ScanningViewController"
         performSegue(withIdentifier: segueIdentifier, sender: nil)
     }
-    
+
+    // MARK: - Settings
+
+    /// Added in code so Main.storyboard does not have to change.
+    ///
+    /// The panel lives here rather than on the scanning screen because most of these
+    /// are read when that screen loads: the capture session resolution and the ICP
+    /// parameters are both fixed by then, so editing them mid-scan would look like it
+    /// did nothing. Overlay opacity is the exception, and also has a live control on
+    /// the scanning screen itself.
+    /// A plain button rather than a bar button item: this screen sits inside the
+    /// storyboard's navigation controller, but that controller keeps its bar hidden,
+    /// so a navigationItem button would never appear.
+    private func _installSettingsButton() {
+        let button = UIButton(type: .system)
+        button.setImage(UIViewController.inAppSettingsIcon(), for: .normal)
+        button.accessibilityLabel = "Settings"
+        button.addTarget(self, action: #selector(presentInAppSettings), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(button)
+
+        let guide = view.safeAreaLayoutGuide
+
+        NSLayoutConstraint.activate([
+            button.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant:
+                -20),
+            button.topAnchor.constraint(equalTo: guide.topAnchor, constant: 12),
+            button.widthAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+        ])
+    }
+
 }
 
 extension UserDefaults {
