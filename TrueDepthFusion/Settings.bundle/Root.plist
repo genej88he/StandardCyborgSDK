@@ -8,6 +8,26 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string></string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>MinimumValue</key>
+			<integer>0</integer>
+			<key>MaximumValue</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Tap to start/stop</string>
@@ -70,19 +90,19 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>ICP tolerance</string>
+			<string>Point cloud overlay opacity</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>icp_tolerance</string>
+			<string>pointcloud_overlay_opacity</string>
 			<key>DefaultValue</key>
-			<real>2e-05</real>
+			<real>1</real>
 			<key>MinimumValue</key>
-			<real>1e-05</real>
+			<integer>0</integer>
 			<key>MaximumValue</key>
-			<real>0.0001</real>
+			<real>1</real>
 			<key>showValue</key>
 			<true/>
 		</dict>
