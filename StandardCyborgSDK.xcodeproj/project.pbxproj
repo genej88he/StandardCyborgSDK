@@ -47,6 +47,7 @@
 		5E73328730441B14003CE45F /* InAppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E73328630441B14003CE45F /* InAppSettingsViewController.swift */; };
 		5E9F01883061C92A0075D298 /* SCPointCloudPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */; };
 		5E9F01893061C92A0075D298 /* prototypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E9F01873061C92A0075D298 /* prototypes.json */; };
+		5E9F018B3063BDCC0075D298 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F018A3063BDCB0075D298 /* TrashViewController.swift */; };
 		75079CB449930783ED401F1B /* libPods-StandardCyborgFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0707F5A724928EB516F1BF3C /* libPods-StandardCyborgFusion.a */; };
 		7609B71321167D4200C0C8D2 /* PointCloudIO_OBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7609B71221167D4200C0C8D2 /* PointCloudIO_OBJ.cpp */; };
 		7609B7192117B4C600C0C8D2 /* ProcessedFrame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7609B7182117B4C600C0C8D2 /* ProcessedFrame.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -631,6 +632,7 @@
 		5E73328630441B14003CE45F /* InAppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppSettingsViewController.swift; sourceTree = "<group>"; };
 		5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPointCloudPositions.swift; sourceTree = "<group>"; };
 		5E9F01873061C92A0075D298 /* prototypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prototypes.json; sourceTree = "<group>"; };
+		5E9F018A3063BDCB0075D298 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		6BA7DCB706A86532C3F884E6 /* libPods-StandardCyborgFusionTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StandardCyborgFusionTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E24EF9BF29B2FDD64D17A57 /* libPods-StandardCyborgAlgorithmsTestbed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StandardCyborgAlgorithmsTestbed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7609B71221167D4200C0C8D2 /* PointCloudIO_OBJ.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointCloudIO_OBJ.cpp; sourceTree = "<group>"; };
@@ -1338,6 +1340,7 @@
 		768F64E92121570600C1B1DA /* TrueDepthFusion */ = {
 			isa = PBXGroup;
 			children = (
+				5E9F018A3063BDCB0075D298 /* TrashViewController.swift */,
 				5E9F01873061C92A0075D298 /* prototypes.json */,
 				5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */,
 				5E73328630441B14003CE45F /* InAppSettingsViewController.swift */,
@@ -2414,6 +2417,7 @@
 				76EE33D3212E0D9000D62C3D /* SoundEffect.m in Sources */,
 				421368622DA76EB20084F902 /* SendEmailController.swift in Sources */,
 				7667811221CD77F8005BFAA2 /* UIImageHelpers.swift in Sources */,
+				5E9F018B3063BDCC0075D298 /* TrashViewController.swift in Sources */,
 				76EE33CD212DDD9300D62C3D /* AudioAndHapticEngine.swift in Sources */,
 				7693C45F215886D4005A4772 /* SCPointCloudRenderer.m in Sources */,
 				5E9F01883061C92A0075D298 /* SCPointCloudPositions.swift in Sources */,
