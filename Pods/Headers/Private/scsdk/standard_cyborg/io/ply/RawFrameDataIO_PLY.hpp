@@ -1,1 +1,0 @@
-../../../../../../../scsdk/c++/scsdk/standard_cyborg/io/ply/RawFrameDataIO_PLY.hpp

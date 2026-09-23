@@ -1,1 +1,0 @@
-../../../../../../scsdk/c++/scsdk/standard_cyborg/sc3d/Face3.hpp

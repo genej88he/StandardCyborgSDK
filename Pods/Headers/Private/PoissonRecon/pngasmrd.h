@@ -1,1 +1,0 @@
-../../../PoissonRecon/PNG/pngasmrd.h
