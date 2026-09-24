@@ -47,7 +47,6 @@
 		5E73328730441B14003CE45F /* InAppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E73328630441B14003CE45F /* InAppSettingsViewController.swift */; };
 		5E9F01883061C92A0075D298 /* SCPointCloudPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */; };
 		5E9F01893061C92A0075D298 /* prototypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E9F01873061C92A0075D298 /* prototypes.json */; };
-		5E9F018B3063BDCC0075D298 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F018A3063BDCB0075D298 /* TrashViewController.swift */; };
 		75079CB449930783ED401F1B /* libPods-StandardCyborgFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0707F5A724928EB516F1BF3C /* libPods-StandardCyborgFusion.a */; };
 		7609B71321167D4200C0C8D2 /* PointCloudIO_OBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7609B71221167D4200C0C8D2 /* PointCloudIO_OBJ.cpp */; };
 		7609B7192117B4C600C0C8D2 /* ProcessedFrame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7609B7182117B4C600C0C8D2 /* ProcessedFrame.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -238,6 +237,10 @@
 		76EE33DB212E131800D62C3D /* ScanningFinished.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 76EE33D7212E131800D62C3D /* ScanningFinished.m4a */; };
 		76FFDF122150559300500A84 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76FFDF112150559300500A84 /* Settings.bundle */; };
 		7D1F2D2BC1ABD85DC0453DA6 /* libPods-VisualTesteriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C93955F9D56AC9010462FF /* libPods-VisualTesteriOS.a */; };
+		82A8EEF03063956F00ABEA8A /* WoundClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A8EEEE3063956F00ABEA8A /* WoundClassifier.swift */; };
+		82A8EEF13063956F00ABEA8A /* WoundMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A8EEEF3063956F00ABEA8A /* WoundMeasurement.swift */; };
+		82A8EEF23063956F00ABEA8A /* EdgeNeXtEncoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 82A8EEEC3063956F00ABEA8A /* EdgeNeXtEncoder.mlpackage */; };
+		82A8EEF33063956F00ABEA8A /* WoundClassificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A8EEED3063956F00ABEA8A /* WoundClassificationViewController.swift */; };
 		A4130292EC0C27E692B9EF84 /* libPods-VisualTesterMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 542369A8C29974799FD116A8 /* libPods-VisualTesterMac.a */; };
 		A5092C3021C1BC50003B20BC /* crc32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5092C2E21C1BC50003B20BC /* crc32.cpp */; };
 		A5092C3121C1BC50003B20BC /* crc32.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A5092C2F21C1BC50003B20BC /* crc32.hpp */; };
@@ -632,7 +635,6 @@
 		5E73328630441B14003CE45F /* InAppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppSettingsViewController.swift; sourceTree = "<group>"; };
 		5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPointCloudPositions.swift; sourceTree = "<group>"; };
 		5E9F01873061C92A0075D298 /* prototypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prototypes.json; sourceTree = "<group>"; };
-		5E9F018A3063BDCB0075D298 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		6BA7DCB706A86532C3F884E6 /* libPods-StandardCyborgFusionTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StandardCyborgFusionTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E24EF9BF29B2FDD64D17A57 /* libPods-StandardCyborgAlgorithmsTestbed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StandardCyborgAlgorithmsTestbed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7609B71221167D4200C0C8D2 /* PointCloudIO_OBJ.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointCloudIO_OBJ.cpp; sourceTree = "<group>"; };
@@ -823,6 +825,10 @@
 		76EE33D7212E131800D62C3D /* ScanningFinished.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ScanningFinished.m4a; sourceTree = "<group>"; };
 		76FFDF112150559300500A84 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7DE545049E45E18955D27995 /* Pods-StandardCyborgFusionOSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StandardCyborgFusionOSX.release.xcconfig"; path = "Target Support Files/Pods-StandardCyborgFusionOSX/Pods-StandardCyborgFusionOSX.release.xcconfig"; sourceTree = "<group>"; };
+		82A8EEEC3063956F00ABEA8A /* EdgeNeXtEncoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = EdgeNeXtEncoder.mlpackage; sourceTree = "<group>"; };
+		82A8EEED3063956F00ABEA8A /* WoundClassificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoundClassificationViewController.swift; sourceTree = "<group>"; };
+		82A8EEEE3063956F00ABEA8A /* WoundClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoundClassifier.swift; sourceTree = "<group>"; };
+		82A8EEEF3063956F00ABEA8A /* WoundMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoundMeasurement.swift; sourceTree = "<group>"; };
 		927CBAD83870E97BE0537CAB /* Pods-StandardCyborgFusion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StandardCyborgFusion.debug.xcconfig"; path = "Target Support Files/Pods-StandardCyborgFusion/Pods-StandardCyborgFusion.debug.xcconfig"; sourceTree = "<group>"; };
 		98E3CF7034A0504BCB87F3BF /* Pods-VisualTesteriOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualTesteriOS.debug.xcconfig"; path = "Target Support Files/Pods-VisualTesteriOS/Pods-VisualTesteriOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A5092C2E21C1BC50003B20BC /* crc32.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = crc32.cpp; sourceTree = "<group>"; };
@@ -1340,7 +1346,10 @@
 		768F64E92121570600C1B1DA /* TrueDepthFusion */ = {
 			isa = PBXGroup;
 			children = (
-				5E9F018A3063BDCB0075D298 /* TrashViewController.swift */,
+				82A8EEEC3063956F00ABEA8A /* EdgeNeXtEncoder.mlpackage */,
+				82A8EEED3063956F00ABEA8A /* WoundClassificationViewController.swift */,
+				82A8EEEE3063956F00ABEA8A /* WoundClassifier.swift */,
+				82A8EEEF3063956F00ABEA8A /* WoundMeasurement.swift */,
 				5E9F01873061C92A0075D298 /* prototypes.json */,
 				5E9F01863061C92A0075D298 /* SCPointCloudPositions.swift */,
 				5E73328630441B14003CE45F /* InAppSettingsViewController.swift */,
@@ -2417,12 +2426,15 @@
 				76EE33D3212E0D9000D62C3D /* SoundEffect.m in Sources */,
 				421368622DA76EB20084F902 /* SendEmailController.swift in Sources */,
 				7667811221CD77F8005BFAA2 /* UIImageHelpers.swift in Sources */,
-				5E9F018B3063BDCC0075D298 /* TrashViewController.swift in Sources */,
 				76EE33CD212DDD9300D62C3D /* AudioAndHapticEngine.swift in Sources */,
 				7693C45F215886D4005A4772 /* SCPointCloudRenderer.m in Sources */,
 				5E9F01883061C92A0075D298 /* SCPointCloudPositions.swift in Sources */,
 				76E2E7E3212BC452006BEAC6 /* ScansViewController.swift in Sources */,
 				768F650921215A6100C1B1DA /* ScanPreviewViewController.swift in Sources */,
+				82A8EEF03063956F00ABEA8A /* WoundClassifier.swift in Sources */,
+				82A8EEF13063956F00ABEA8A /* WoundMeasurement.swift in Sources */,
+				82A8EEF23063956F00ABEA8A /* EdgeNeXtEncoder.mlpackage in Sources */,
+				82A8EEF33063956F00ABEA8A /* WoundClassificationViewController.swift in Sources */,
 				7639967A212E360D000E5D3D /* DepthColoringFilter.metal in Sources */,
 				7685718E222CCB8500066B6E /* BPLYDepthDataAccumulator.mm in Sources */,
 				76999472215C9FF0007CF275 /* PaddedLabel.swift in Sources */,
@@ -2995,7 +3007,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 94KKYBKVV5;
+				DEVELOPMENT_TEAM = AS9PDG6AC3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = StandardCyborgAlgorithmsTestbed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3023,7 +3035,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 94KKYBKVV5;
+				DEVELOPMENT_TEAM = AS9PDG6AC3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = StandardCyborgAlgorithmsTestbed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3053,7 +3065,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 94KKYBKVV5;
+				DEVELOPMENT_TEAM = AS9PDG6AC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StandardCyborgFusion",
@@ -3064,6 +3076,7 @@
 					"$(PROJECT_DIR)/deps/nanoflann/include",
 				);
 				INFOPLIST_FILE = TrueDepthFusion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3085,7 +3098,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 94KKYBKVV5;
+				DEVELOPMENT_TEAM = AS9PDG6AC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StandardCyborgFusion",
@@ -3096,6 +3109,7 @@
 					"$(PROJECT_DIR)/deps/nanoflann/include",
 				);
 				INFOPLIST_FILE = TrueDepthFusion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
