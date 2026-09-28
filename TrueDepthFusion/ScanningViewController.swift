@@ -1,10 +1,18 @@
+//
+//  BPLYScanningViewController.swift
+//  TrueDepthFusion
+//
+//  Created by Aaron Thompson on 11/7/18.
+//  Copyright © 2018 Standard Cyborg. All rights reserved.
+//
+
 import AVFoundation
 import CoreImage
 import MediaPlayer
 import StandardCyborgFusion
 import UIKit
 
-class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCReconstructionManagerDelegate {
+class ScanningViewController: UIViewController, CameraManagerDelegate, SCReconstructionManagerDelegate {
     
     private enum ScanningTerminationReason {
         case canceled
@@ -16,9 +24,11 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
     @IBOutlet private weak var metalContainerView: UIView!
     @IBOutlet private weak var scanDurationContainerView: UIView!
     @IBOutlet private weak var scanDurationLabel: UILabel!
+    @IBOutlet private weak var showScansButton: UIButton!
     @IBOutlet private weak var elapsedDurationLabel: UILabel!
     @IBOutlet private weak var shutterButton: UIButton!
     @IBOutlet private weak var countdownLabel: UILabel!
+    @IBOutlet private weak var scanFailedLabel: UILabel!
     
     // MARK: -
     
@@ -44,6 +54,14 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction private func showLatestScan(_ sender: UIButton) {
+        guard let scan = _appDelegate.scans.first else { return }
+        
+        _scanPreviewViewController.scan = scan
+        
+        present(_scanPreviewViewController, animated: true, completion: nil)
+    }
+    
     // MARK: - Properties
     
     private let _appDelegate = UIApplication.shared.delegate! as! AppDelegate
@@ -54,6 +72,8 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
     
     private var _latestViewMatrix = matrix_identity_float4x4
     private var _scanningTimer: Timer?
+    
+    // Removed meshing-related properties
     
     private lazy var _algorithmCommandQueue: MTLCommandQueue = _metalDevice.makeCommandQueue()!
     private lazy var _visualizationCommandQueue: MTLCommandQueue = _metalDevice.makeCommandQueue()!
@@ -95,8 +115,8 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
         // without the other puts the exported PLY out of step with what was seen.
         _reconstructionManager.flipsInputHorizontally = false
         
-        _algorithmCommandQueue.label = "BPLYScanningViewController._algorithmCommandQueue"
-        _visualizationCommandQueue.label = "BPLYScanningViewController._visualizationCommandQueue"
+        _algorithmCommandQueue.label = "ScanningViewController._algorithmCommandQueue"
+        _visualizationCommandQueue.label = "ScanningViewController._visualizationCommandQueue"
         
         _installVolumeShutterButton()
         _installPreviewControls()
@@ -108,6 +128,8 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let latestScan = _appDelegate.scans.first
+        showScansButton.setBackgroundImage(latestScan?.thumbnail, for: UIControl.State.normal)
         scanDurationContainerView.isHidden = _tapToStartStop
         
         _cameraManager.startSession { result in
@@ -265,10 +287,14 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
     {
         _latestViewMatrix = metadata.viewMatrix
         
+        // Removed meshing-related code from here
+        
         if _stopScanOnReconFail && metadata.result == .failed {
             let assimilatedTooFewFrames = statistics.succeededCount < self._failedScanShowPreviewMinFrameCount
             
             self._stopScanning(reason: assimilatedTooFewFrames ? .canceled : .finished)
+            
+            self._showScanFailedMessage()
         }
     }
     
@@ -396,6 +422,7 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
         _elapsedSeconds = 0
         _firstFramePhoto = nil
         _scanning = true
+        // Removed meshing reset
     }
     
     private func _stopScanning(reason: ScanningTerminationReason) {
@@ -420,6 +447,7 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
             _reconstructionManager.finalize {
                 let pointCloud = self._reconstructionManager.buildPointCloud()
                 
+                // No longer pass meshTexturing - just pass nil
                 let scan = Scan(pointCloud: pointCloud,
                                 thumbnail: self._firstFramePhoto,
                                 meshTexturing: nil)
@@ -434,6 +462,17 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
             _reconstructionManager.reset()
             _cameraManager.paused = false
         }
+    }
+    
+    private func _showScanFailedMessage() {
+        scanFailedLabel.isHidden = false
+        scanFailedLabel.alpha = 1
+        
+        UIView.animate(withDuration: 0.8, delay: 3.0, options: [], animations: {
+            self.scanFailedLabel.alpha = 0
+        }, completion: { finished in
+            self.scanFailedLabel.isHidden = true
+        })
     }
     
     // MARK: - Live Preview Controls
@@ -512,7 +551,7 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
 
     private let _volumeView = MPVolumeView(frame: CGRect(x: -1000, y: -1000, width: 200, height: 40))
     private var _volumeObservation: NSKeyValueObservation?
-    private var _lastVolume: Float = BPLYScanningViewController._volumeShutterBaseline
+    private var _lastVolume: Float = ScanningViewController._volumeShutterBaseline
     private var _isResettingVolume = false
 
     private func _installVolumeShutterButton() {
@@ -560,9 +599,9 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
         guard let volumeSlider = _volumeSlider() else { return }
 
         _isResettingVolume = true
-        volumeSlider.setValue(BPLYScanningViewController._volumeShutterBaseline, animated: false)
+        volumeSlider.setValue(ScanningViewController._volumeShutterBaseline, animated: false)
         volumeSlider.sendActions(for: .valueChanged)
-        _lastVolume = BPLYScanningViewController._volumeShutterBaseline
+        _lastVolume = ScanningViewController._volumeShutterBaseline
 
         // outputVolume reports our own reset back asynchronously, so stay suppressed
         // briefly, otherwise we read it as a button press and fire twice.
