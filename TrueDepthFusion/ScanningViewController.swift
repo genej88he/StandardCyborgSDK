@@ -211,8 +211,14 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
                          depthTime: CMTime,
                          depthCalibrationData: AVCameraCalibrationData)
     {
-        // Held onto so the finished scan can be saved with a real photograph
-        _latestColorBuffer = colorBuffer
+        // Capture the first color frame of the scan so the export carries a
+        // photograph from when the camera was first positioned on the subject,
+        // rather than the final frame (often grabbed as the phone pulls away).
+        // Converted to a UIImage immediately so no camera pool buffer is retained
+        // for the duration of the scan.
+        if _scanning && _firstFramePhoto == nil {
+            _firstFramePhoto = _photo(from: colorBuffer)
+        }
 
         // Diagnostics for the iPhone 17 front-sensor rotation change. Prints once so it
         // does not flood the console at 30fps. Safe to delete along with _loggedFrameDiagnostics.
@@ -388,6 +394,7 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
         RunLoop.current.add(_scanningTimer!, forMode: RunLoop.Mode.default)
         
         _elapsedSeconds = 0
+        _firstFramePhoto = nil
         _scanning = true
     }
     
@@ -414,7 +421,7 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
                 let pointCloud = self._reconstructionManager.buildPointCloud()
                 
                 let scan = Scan(pointCloud: pointCloud,
-                                thumbnail: self._photoFromLatestColorBuffer(),
+                                thumbnail: self._firstFramePhoto,
                                 meshTexturing: nil)
                 
                 self._scanPreviewViewController.scan = scan
@@ -595,18 +602,18 @@ class BPLYScanningViewController: UIViewController, CameraManagerDelegate, SCRec
     // MARK: - Wound Photo
 
     private lazy var _ciContext = CIContext()
-    private var _latestColorBuffer: CVPixelBuffer?
+    private var _firstFramePhoto: UIImage?
     private var _loggedFrameDiagnostics = false
 
-    /// The most recent color frame, saved next to the point cloud so the export
-    /// carries an actual photograph rather than a render of the points.
+    /// Converts a camera color frame into a UIImage, saved next to the point cloud
+    /// so the export carries an actual photograph rather than a render of the points.
+    /// Called once, on the first frame of a scan, so the pixel buffer is not retained
+    /// from the capture pool for the whole scan.
     ///
     /// If the photo comes out rotated or mirrored on device, change the orientation
     /// below. For this front-facing camera the candidates are .leftMirrored,
     /// .rightMirrored, .right and .left.
-    private func _photoFromLatestColorBuffer() -> UIImage? {
-        guard let colorBuffer = _latestColorBuffer else { return nil }
-
+    private func _photo(from colorBuffer: CVPixelBuffer) -> UIImage? {
         let ciImage = CIImage(cvPixelBuffer: colorBuffer).oriented(.right)
 
         guard let cgImage = _ciContext.createCGImage(ciImage, from: ciImage.extent) else { return nil }
