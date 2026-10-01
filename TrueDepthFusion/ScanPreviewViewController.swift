@@ -89,9 +89,12 @@ class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource
 
     override func viewDidLoad() {
         _initialPointOfView = sceneView.pointOfView!.transform
+        // Classification UI is set up first so the measurement buttons can anchor
+        // horizontally to the classify button — both now live on the left, leaving
+        // the top-right corner clear for the Share button.
+        _setupClassificationUI()
         _setupMeasurementUI()
         _setupMeasurementGesture()
-        _setupClassificationUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -213,12 +216,17 @@ class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
 
+        // _classifyButton is guaranteed non-nil here because _setupClassificationUI()
+        // runs before _setupMeasurementUI() (see viewDidLoad).
         NSLayoutConstraint.activate([
+            // Sit the Measure button just to the right of the Classify button so both
+            // live on the left, keeping the top-right corner clear for the Share button.
             button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            button.leadingAnchor.constraint(equalTo: _classifyButton!.trailingAnchor, constant: 8),
 
+            // Reset sits to the right of Measure (only visible in measurement mode).
             resetButton.topAnchor.constraint(equalTo: button.topAnchor),
-            resetButton.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -8),
+            resetButton.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 8),
 
             label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 8),
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
