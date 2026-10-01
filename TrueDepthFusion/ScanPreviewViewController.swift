@@ -16,7 +16,7 @@ import MessageUI
 import SwiftUI
 import simd
 
-class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource {
+class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource, SCNSceneRendererDelegate {
 
     // MARK: - IB Outlets and Actions
 
@@ -95,6 +95,10 @@ class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource
         _setupClassificationUI()
         _setupMeasurementUI()
         _setupMeasurementGesture()
+
+        // Drives _updatePointSize(forZoom:) every rendered frame so the dots can grow
+        // as the user pinch-zooms in.
+        sceneView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -155,6 +159,17 @@ class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource
         }
         didSet {
             _pointCloudNode?.name = "point cloud"
+
+            // Hold onto the point geometry element (and its default sizing) so we can
+            // enlarge the dots as the user zooms in. See the "Zoom-adaptive point size"
+            // section. The default values captured here are what "regular zoom" uses.
+            _pointElement = _pointCloudNode?.geometry?.elements.first(where: { $0.primitiveType == .point })
+                ?? _pointCloudNode?.geometry?.elements.first
+            if let element = _pointElement {
+                _basePointSize = element.pointSize
+                _baseMaxPointRadius = element.maximumPointScreenSpaceRadius
+            }
+            _referenceZoomMetric = nil
 
             // No display flip here any more. The reconstruction now mirrors the depth
             // and color input at the source, so the point cloud already matches what
@@ -495,5 +510,66 @@ class ScanPreviewViewController: UIViewController, QLPreviewControllerDataSource
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+
+    // MARK: - Zoom-adaptive point size
+
+    // SceneKit draws each point clamped to maximumPointScreenSpaceRadius on screen, so
+    // zooming in spreads the points apart without enlarging them and the cloud looks
+    // sparse. We scale the point size up with the zoom level, anchored so that at the
+    // default (regular) zoom the values are exactly what buildNode() set — only zooming
+    // in past that baseline makes the dots grow.
+
+    private var _pointElement: SCNGeometryElement?
+    private var _basePointSize: CGFloat = 4
+    private var _baseMaxPointRadius: CGFloat = 5
+    private var _referenceZoomMetric: CGFloat?
+    /// Upper bound on the on-screen dot radius so extreme zoom doesn't produce huge blobs.
+    private let _maxPointRadiusCap: CGFloat = 40
+
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        guard let element = _pointElement,
+              let metric = _currentZoomMetric(using: renderer) else { return }
+
+        // The first frame at the default camera position establishes the "regular zoom"
+        // baseline; from there a larger metric means the user has zoomed in.
+        guard let reference = _referenceZoomMetric else {
+            _referenceZoomMetric = metric
+            return
+        }
+
+        // Clamped to >= 1 so regular zoom and zooming back out stay at the original size.
+        let zoomFactor = max(1.0, metric / reference)
+        let newPointSize = _basePointSize * zoomFactor
+        let newMaxRadius = min(_baseMaxPointRadius * zoomFactor, _maxPointRadiusCap)
+
+        // Only write when something actually changed, to avoid churning every frame.
+        if abs(element.pointSize - newPointSize) > 0.05 {
+            element.pointSize = newPointSize
+        }
+        if abs(element.maximumPointScreenSpaceRadius - newMaxRadius) > 0.05 {
+            element.maximumPointScreenSpaceRadius = newMaxRadius
+        }
+    }
+
+    /// A scalar proportional to how large the scan appears on screen, from the camera's
+    /// distance and field of view (both enlarge the apparent size when zooming in).
+    /// Returns nil if the camera or point cloud isn't ready yet.
+    private func _currentZoomMetric(using renderer: SCNSceneRenderer) -> CGFloat? {
+        guard let pov = renderer.pointOfView,
+              let camera = pov.camera,
+              let cloud = _pointCloudNode else { return nil }
+
+        let cameraPosition = pov.presentation.simdWorldPosition
+        let target = cloud.presentation.simdWorldPosition
+        let distance = simd_distance(cameraPosition, target)
+        guard distance > 1e-5 else { return nil }
+
+        let halfFOVRadians = Float(camera.fieldOfView) * .pi / 180 / 2
+        let tangent = tan(halfFOVRadians)
+        guard tangent > 1e-5 else { return nil }
+
+        // Apparent size is proportional to 1 / (distance · tan(halfFOV)).
+        return CGFloat(1 / (distance * tangent))
     }
 }
