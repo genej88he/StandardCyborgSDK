@@ -224,7 +224,6 @@
 		76CE99FF2137471C002F5510 /* ComputePointsKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 76CE99FE2137471C002F5510 /* ComputePointsKernel.h */; };
 		76CE9A012137472B002F5510 /* ComputePointsKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 76CE9A002137472B002F5510 /* ComputePointsKernel.metal */; };
 		76E2E7E3212BC452006BEAC6 /* ScansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2E7E2212BC452006BEAC6 /* ScansViewController.swift */; };
-		D01CA51000FEEDA000C0DE02 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01CA51000FEEDA000C0DE01 /* TrashViewController.swift */; };
 		76E693B822A7791600D36F37 /* SCAssimilatedFrameMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E693B722A7791600D36F37 /* SCAssimilatedFrameMetadata.m */; };
 		76E88D4921C040AE008793AB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E88D4521C040AE008793AB /* CoreVideo.framework */; };
 		76EADEE721110E82006854BF /* Surfel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 76EADEE521110E82006854BF /* Surfel.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -302,6 +301,7 @@
 		A5A5A86921C45F4A000978E9 /* CVPixelBufferHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5A86821C45F4A000978E9 /* CVPixelBufferHelpers.m */; };
 		A5A5A86F21C46843000978E9 /* SCReconstructionManagerParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = A5A5A86E21C46843000978E9 /* SCReconstructionManagerParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5A5CE912159ACCE00768FB3 /* MetalDepthProcessorData.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5A5CE902159ACCE00768FB3 /* MetalDepthProcessorData.mm */; };
+		D01CA51000FEEDA000C0DE02 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01CA51000FEEDA000C0DE01 /* TrashViewController.swift */; };
 		D3E611F8D755108530FFF107 /* libPods-TrueDepthFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE23DD5FF5A397EC09D443D /* libPods-TrueDepthFusion.a */; };
 		E208CC3F17BF98DBA674E69C /* libPods-StandardCyborgFusionOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D3338D00CB49BE1B7CC35E /* libPods-StandardCyborgFusionOSX.a */; };
 		E8A637A02480771400A8B0EC /* StandardCyborgFusion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EB32C024739C8C00EF7A01 /* StandardCyborgFusion.framework */; };
@@ -817,7 +817,6 @@
 		76CE99FE2137471C002F5510 /* ComputePointsKernel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComputePointsKernel.h; sourceTree = "<group>"; };
 		76CE9A002137472B002F5510 /* ComputePointsKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ComputePointsKernel.metal; sourceTree = "<group>"; };
 		76E2E7E2212BC452006BEAC6 /* ScansViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScansViewController.swift; sourceTree = "<group>"; };
-		D01CA51000FEEDA000C0DE01 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		76E693B722A7791600D36F37 /* SCAssimilatedFrameMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCAssimilatedFrameMetadata.m; sourceTree = "<group>"; };
 		76E88D4521C040AE008793AB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		76EADEE521110E82006854BF /* Surfel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Surfel.hpp; sourceTree = "<group>"; };
@@ -915,6 +914,7 @@
 		A6C93955F9D56AC9010462FF /* libPods-VisualTesteriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VisualTesteriOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD9F19495B7CE2877D348A64 /* Pods-StandardCyborgAlgorithmsTestbed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StandardCyborgAlgorithmsTestbed.release.xcconfig"; path = "Target Support Files/Pods-StandardCyborgAlgorithmsTestbed/Pods-StandardCyborgAlgorithmsTestbed.release.xcconfig"; sourceTree = "<group>"; };
 		C89A39FC2B177E662133A75F /* Pods-StandardCyborgAlgorithmsTestbed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StandardCyborgAlgorithmsTestbed.debug.xcconfig"; path = "Target Support Files/Pods-StandardCyborgAlgorithmsTestbed/Pods-StandardCyborgAlgorithmsTestbed.debug.xcconfig"; sourceTree = "<group>"; };
+		D01CA51000FEEDA000C0DE01 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		E6689CCA27ED6C9280FE8C2A /* Pods-TrueDepthFusion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrueDepthFusion.debug.xcconfig"; path = "Target Support Files/Pods-TrueDepthFusion/Pods-TrueDepthFusion.debug.xcconfig"; sourceTree = "<group>"; };
 		E8EB32C024739C8C00EF7A01 /* StandardCyborgFusion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StandardCyborgFusion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE23DD5FF5A397EC09D443D /* libPods-TrueDepthFusion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrueDepthFusion.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3088,8 +3088,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AS9PDG6AC3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = H2XBFN455K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StandardCyborgFusion",
@@ -3106,8 +3109,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.standardcyborg.TrueDepthFusion123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woundcare.truedepthfusion;
 				PRODUCT_NAME = TrueDepthFusion;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Woundcare TestFlight";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TrueDepthFusion/TrueDepthFusion-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3121,8 +3126,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AS9PDG6AC3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = H2XBFN455K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StandardCyborgFusion",
@@ -3139,8 +3147,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.standardcyborg.TrueDepthFusion123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woundcare.truedepthfusion;
 				PRODUCT_NAME = TrueDepthFusion;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Woundcare TestFlight";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TrueDepthFusion/TrueDepthFusion-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
