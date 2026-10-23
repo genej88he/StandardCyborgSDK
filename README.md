@@ -5,7 +5,7 @@
 
 ## Data Access
 
-Data for the study is available at: https://drive.proton.me/urls/40DCJMMWQC#2uACU6KHkopx with passcode RemoteHubLab1*.
+Data for the study is available at: https://drive.proton.me/urls/40DCJMMWQC#2uACU6KHkopx with passcode woundcare.
 
 ## Introduction
 
