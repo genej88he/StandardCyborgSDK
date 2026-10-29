@@ -54,7 +54,6 @@ enum ScanExporter {
                 "dateCreated": ISO8601DateFormatter().string(from: scan.dateCreated),
                 "finalWoundType": classification?.finalWoundType as Any,
                 "wasReviewed": classification?.wasReviewed ?? false,
-                "reviewedBy": classification?.reviewedBy as Any,
                 "measurementCount": measurements.count,
                 "measurementsCm": measurements.map { $0.distanceCentimeters }
             ])
